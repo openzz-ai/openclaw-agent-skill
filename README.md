@@ -2,6 +2,21 @@
 
 A reusable OpenClaw skill/bootstrap kit for keeping `main` on `gpt-5.4`, reducing context overload, routing operations work into `openclaw-ops`, and standardizing reset handoffs.
 
+## Contents / 目录
+
+- [简体中文](#简体中文)
+- [中文快速开始](#中文快速开始)
+- [What Problem This Solves](#what-problem-this-solves)
+- [Included](#included)
+- [Repo Layout](#repo-layout)
+- [Quick Start](#quick-start)
+- [Core Behavior](#core-behavior)
+- [No-Brain Routing](#no-brain-routing)
+- [Example: When To Leave `main`](#example-when-to-leave-main)
+- [Example: `/new` Handoff](#example-new-handoff)
+- [Install Checklist](#install-checklist)
+- [Notes](#notes)
+
 ## 简体中文
 
 这是一个可复用的 OpenClaw skill / bootstrap kit，用来解决这几类常见问题：
@@ -25,6 +40,27 @@ A reusable OpenClaw skill/bootstrap kit for keeping `main` on `gpt-5.4`, reducin
 - 大代码任务 -> `codex`
 - `main` 超过 `80%` -> `/new`
 - `main` 到 `90%` 或更高 -> 立即 `/new`
+
+## 中文快速开始
+
+1. 在目标机器上创建一个 `openclaw-ops` agent 和对应 workspace。
+2. 把 `references/workspace/` 复制到这个 workspace。
+3. 把 `references/openclaw-config-snippet.json` 合并进目标机器的 `~/.openclaw/openclaw.json`。
+4. 修改其中的绝对路径配置。
+5. 执行下面三条命令验证配置是否生效：
+
+```bash
+openclaw config validate
+openclaw gateway restart
+openclaw gateway status
+```
+
+如果结果正常，你应该能看到：
+
+- 配置校验通过
+- 网关重启成功
+- `RPC probe: ok`
+- `openclaw status` 里出现 `openclaw-ops`
 
 ## What Problem This Solves
 
