@@ -1,0 +1,31 @@
+{
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "openai-codex/gpt-5.4",
+        "fallbacks": [
+          "openai/gpt-5.4-pro",
+          "zai/glm-5",
+          "openai-codex/gpt-5.3-codex",
+          "openai-codex/gpt-5.2",
+          "openai/gpt-5.4"
+        ]
+      },
+      "contextPruning": {
+        "mode": "cache-ttl",
+        "ttl": "30m"
+      },
+      "compaction": {
+        "mode": "safeguard",
+        "reserveTokens": 25000,
+        "keepRecentTokens": 60000,
+        "reserveTokensFloor": 25000,
+        "model": "zai/glm-5",
+        "memoryFlush": {
+          "enabled": true,
+          "softThresholdTokens": 6000
+        }
+      }
+    }
+  }
+}
