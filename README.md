@@ -2,6 +2,30 @@
 
 A reusable OpenClaw skill/bootstrap kit for keeping `main` on `gpt-5.4`, reducing context overload, routing operations work into `openclaw-ops`, and standardizing reset handoffs.
 
+## 简体中文
+
+这是一个可复用的 OpenClaw skill / bootstrap kit，用来解决这几类常见问题：
+
+- `main` 会话越聊越长，最后把上下文顶满
+- OpenClaw 运维问题和普通聊天混在一起
+- `/new` 用得太晚，或者重开后没有标准 handoff
+- 不同机器上的 agent 规则不一致
+
+这套仓库的目标是提供一套可复制的工作方式：
+
+- 保持 `main` 使用 `gpt-5.4`
+- 用 compaction + memory 控制上下文膨胀
+- 把 OpenClaw 配置、插件、网关、上下文治理分流到 `openclaw-ops`
+- 用一个 `START-HERE.md` 实现“无脑操作”
+
+快速理解：
+
+- 普通聊天 -> `main`
+- OpenClaw/插件/网关/上下文/配置 -> `openclaw-ops`
+- 大代码任务 -> `codex`
+- `main` 超过 `80%` -> `/new`
+- `main` 到 `90%` 或更高 -> 立即 `/new`
+
 ## What Problem This Solves
 
 OpenClaw setups often drift into one overloaded `main` thread:
